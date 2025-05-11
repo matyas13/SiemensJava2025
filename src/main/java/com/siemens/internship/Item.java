@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,6 +24,10 @@ public class Item {
     private String description;
     private String status;
 
-    // Add email regex validation
+    //begins with at least one character, which can be number, lowercase, uppercase or the listed
+    // punctuation marks, followed by @, then again lowercase, uppercase or .- followed by dot, then ends with the domain
+    @Pattern(
+            regexp = "^[A-Za-z0-9_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$"
+    )
     private String email;
 }
